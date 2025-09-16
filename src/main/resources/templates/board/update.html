@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>너또로또 - 글수정</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: yellow;
+        }
+
+        header:hover h1,
+        header:hover nav a {
+            color: yellow;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #333;
+            color: yellow;
+            padding: 10px 20px;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>너또로또</h1>
+    <nav>
+        <a href="/">홈</a>
+        <a href="/board/list">커뮤니티</a>
+        <a href="#">자동추첨</a>
+        <a href="#">미니게임</a>
+    </nav>
+</header>
+
+<div class="form-container">
+    <h2>게시글 수정</h2>
+    <form action="/board/update" method="post">
+        <label>글번호</label>
+        <input type="number" name="boardCode" th:value="${board.boardCode}" readonly>
+
+        <label>글제목</label>
+        <input type="text" name="boardTitle" th:value="${board.boardTitle}" required>
+
+        <label>글내용</label>
+        <input type="text" name="boardContent" th:value="${board.boardContent}" required>
+
+        <label>ID</label>
+        <input type="text" name="boardID" th:value="${board.boardID}" required>
+
+        <label>PW</label>
+        <input type="text" name="boardPW" th:value="${board.boardPW}" required>
+
+        <button type="submit">게시글 수정</button>
+    </form>
+</div>
+
+</body>
+</html>

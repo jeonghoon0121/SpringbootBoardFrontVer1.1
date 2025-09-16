@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>너또로또 메인페이지</title>
+    <style>
+        /* 메뉴 글자 호버 시 노란색 */
+        nav a:hover {
+            color: yellow;
+        }
+
+        /* header 전체에 마우스 올렸을 때 h1과 nav a 글자색 노란색으로 변경 */
+        header:hover h1,
+        header:hover nav a {
+            color: yellow;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+
+        .banner {
+            width: 250px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-right: 20px;
+            text-align: center;
+        }
+
+        .banner img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .content {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination a {
+            margin: 0 5px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .pagination a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+    <script>
+        const successMessage = `[[${ successMessage }]]`
+        if(successMessage) {
+            alert(successMessage);
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>너또로또</h1>
+    <nav>
+        <a href="#">회사소개</a>
+        <a href="#">자동추첨</a>
+        <a href="#">미니게임추첨</a>
+        <a href="#">커뮤니티</a>
+        <a href="#">??</a>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="banner">
+        <h3>SUPER SALE</h3>
+        <p>50% OFF</p>
+        <img src="https://via.placeholder.com/200x300?text=광고배너" alt="광고 배너">
+    </div>
+
+    <div class="content">
+        <h2>커뮤니티 게시판</h2>
+
+        <div style="text-align: right; margin-bottom: 10px;">
+            <!-- 글작성 버튼 -->
+            <a href="/board/write" style="
+        display: inline-block;
+        background-color: #333;
+        color: yellow;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        margin-right: 10px;">글작성</a>
+
+            <!-- 글수정 버튼 -->
+            <form action="/board/update" method="get" style="display: inline;">
+                <input type="number" name="boardCode" placeholder="글번호" required style="
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 5px;
+        ">
+                <button type="submit" style="
+            background-color: #555;
+            color: yellow;
+            padding: 10px 20px;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        ">글수정</button>
+            </form>
+
+            <!-- 글삭제 버튼 -->
+            <form action="/board/delete" method="post" style="display: inline;">
+                <input type="number" name="boardCode" placeholder="글번호" required style="
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-left: 10px;
+            margin-right: 5px;
+        ">
+                <button type="submit" style="
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        ">글삭제</button>
+            </form>
+        </div>
+
+
+
+
+
+        <table style="margin: 0 auto;" >
+        <tr>
+                <th>글번호</th>
+                <th>글제목</th>
+                <th>글내용</th>
+                <th>id</th>
+                <th>pw</th>
+            </tr>
+            <tr th:each="board : ${ boardDTOList }">
+                <td th:text="${ board.boardCode }"></td>
+                <td th:text="${ board.boardTitle }"></td>
+                <td th:text="${ board.boardContent }"></td>
+                <td th:text="${ board.boardID }"></td>
+                <td th:text="${ board.boardPW }"></td>
+            </tr>
+        </table>
+
+        <div class="pagination">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">다음</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.request.BoardMapper">
+    <resultMap id="boardResultMap" type="com.ohgiraffers.request.BoardDTO">
+        <id property="boardCode" column="BRD_NUMBER"/>
+        <result property="boardID" column="BRD_ID"/>
+        <result property="boardPW" column="BRD_PASSWORD"/>
+        <result property="boardTitle" column="BRD_TITLE"/>
+        <result property="boardContent" column="BRD_CONTENT"/>
+    </resultMap>
+    <select id="findAllPosts" resultMap="boardResultMap">
+        SELECT
+        BRD_NUMBER
+        , BRD_ID
+        , BRD_PASSWORD
+        , BRD_TITLE
+        , BRD_CONTENT
+        FROM BOARD
+        ORDER by BRD_NUMBER
+    </select>
+    <insert id="registNewPost" parameterType="com.ohgiraffers.request.BoardDTO">
+        insert into BOARD
+        (
+        BRD_NUMBER
+        , BRD_ID
+        , BRD_PASSWORD
+        , BRD_TITLE
+        , BRD_CONTENT
+        )
+        values
+        (
+        #{ boardCode }
+        ,#{ boardTitle }
+        ,#{ boardContent }
+        ,#{ boardID }
+        ,#{ boardPW }
+        )
+    </insert>
+</mapper>
